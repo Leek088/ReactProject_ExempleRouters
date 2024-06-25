@@ -1,5 +1,6 @@
 ﻿import './Home.css'
 import { useApiRequest } from '../hooks/useApiRequest'
+import { Link } from 'react-router-dom';
 function Home() {
     const urlApiProducts = "http://localhost:3000/products"
     const { data, loading, error } = useApiRequest(urlApiProducts);
@@ -14,11 +15,9 @@ function Home() {
                         {
                             data && data.map((product) => (
                                 <li key={product.id}>
-                                    <h2>{product.name}</h2>                                   
+                                    <h2>{product.name}</h2>
                                     <p>Preço: R$ {product.price}</p>
-                                    <p>Disponível:&nbsp;
-                                        {product.available ? "Sim" : "Não"}
-                                    </p>
+                                    <Link to={`/product/${product.id}`}>Detalhes</Link>
                                 </li>
                             ))
                         }
